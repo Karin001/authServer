@@ -1,0 +1,29 @@
+{
+  "name": "auth-server",
+  "version": "1.0.0",
+  "description": "An auth-server koa app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_PATH=src node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "ryukarin",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "jwt-simple": "^0.5.5",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-jwt": "^3.5.1",
+    "koa-morgan": "^1.0.1",
+    "koa-response-time": "^2.0.0",
+    "koa-router": "^7.2.1",
+    "mongoose": "^4.12.1",
+    "nodemailer": "^4.6.8"
+  }
+}
