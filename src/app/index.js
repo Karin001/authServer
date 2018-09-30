@@ -17,9 +17,7 @@ app.use(function(ctx, next){
       }
   })
 })
-app.use(koaJwt({secret:process.env.JWT_SECRET}).unless({
-  path:[/^\/api\/users\/*/]
-}))
+app.use(koaJwt({secret:process.env.JWT_SECRET,passthrough: true}))
 app.use(responseTime())
 app.use(logger('combined'))
 app.use(bodyparser())
