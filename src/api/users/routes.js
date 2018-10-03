@@ -24,4 +24,8 @@ router.post('/reset-password',async ctx => {
   const data = ctx.request.body
   await controller.resetPassword(ctx, {data})
 })
+router.delete('/logout',async ctx => {
+  const data = ctx.request.body
+  await controller.logout(ctx, {data})
+})
 module.exports = router.routes()

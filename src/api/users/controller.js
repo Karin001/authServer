@@ -186,3 +186,8 @@ exports.resetPassword = async (ctx, { data = {} } = {})=>{
     
   }
 }
+exports.logout = async (ctx, { data = {} } = {})=>{
+  ctx.body = {
+    success:true
+  }
+}
