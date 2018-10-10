@@ -149,6 +149,7 @@ exports.getJwt = async (ctx, { data = {} } = {})=>{
     }
     const payload = {
       email:findUsers[0].email,
+      name:'lockUser',
       role:'lockUser',
       permissionPoint:1
     }

@@ -33,12 +33,30 @@ exports.viewlist = async (ctx, { data = {} } = {}) => {
     }
     try {
         const bloglist = await Blog.find({dir:data.dir})
+       
         if(bloglist.length === 0 ) {
             const tmen = await Blog.find()
-            errorResponse(JSON.stringify(tmen),ctx)
+            errorResponse(JSON.stringify(tmen.map(v => v.dir)),ctx)
             return
         }
-        successResponse(bloglist,ctx)
+        const _bloglist = bloglist.map(v => ({id:v._id,filename:v.filename,description:v.description,created_on:v.created_on}))
+        successResponse(_bloglist,ctx)
+    } catch (error) {
+        errorResponse('服务器抽风',ctx)
+    }
+}
+exports.viewContent = async (ctx, { data = {} } = {}) => {
+    if(!data || !data.id) {
+        errorResponse('信息缺失',ctx)
+        return
+    }
+    try {
+        const blogContent = await Blog.findById(data.id)
+        if(!blogContent) {
+            errorResponse('没找到',ctx)
+            return
+        }
+        successResponse(blogContent,ctx)
     } catch (error) {
         errorResponse('服务器抽风',ctx)
     }
