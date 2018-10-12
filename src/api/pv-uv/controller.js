@@ -25,7 +25,7 @@ exports.mergePvUv = async (ctx, { data = {} } = {}) => {
         const hereComesVisitors = await UV_STATID.find({statId});
         if(!hereComesVisitors || hereComesUsers.length === 0){
             const accessData = [{
-                accessDate:Date.now(),
+                accessDate:new Date().Format('yyyy/MM/dd'),
                 accessCnt:1
             }]
             
@@ -33,8 +33,12 @@ exports.mergePvUv = async (ctx, { data = {} } = {}) => {
             successResponse(newVisitor,ctx)
             return
         } else {
+            const today = new Date().Format('yyyy/MM/dd')
             const oldVisitor = hereComesVisitors[0]
-
+            const todayAccess = oldVisitor.accessData.find(v => v.accessDate === today)
+            if(todayAccess) {
+                
+            }
         }
     } catch (error) {
         

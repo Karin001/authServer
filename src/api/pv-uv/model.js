@@ -12,7 +12,7 @@ const dayPvUvSchema = new Schema({
     browerLanguage:{
         type:String
     },
-    getPlatform{
+    getPlatform:{
         type:String
     },
     pv:{
