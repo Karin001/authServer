@@ -12,7 +12,7 @@ const dayPvUvSchema = new Schema({
     browerLanguage:{
         type:String
     },
-    getPlatform:{
+    platform:{
         type:String
     },
     pv:{
@@ -22,6 +22,10 @@ const dayPvUvSchema = new Schema({
     uv:{
         type: Number,
         required: true
+    },
+    statIds:{
+        type:[String],
+        required:true
     }
 })
 const PvUvSchema = new Schema({
@@ -29,30 +33,13 @@ const PvUvSchema = new Schema({
         type:String
     },
     name:{
-        type:String
+        type:String,
+        required: true
     },
     accessData:[dayPvUv]
 })
-const userDayAccessSchema = new Schema({
-    accessDate:{
-        type:String,
-        required:true
-    },
-    accessCnt:{
-        type:Number,
-        required:true
-    }
-})
-const UvStatIdSchema = new Schema({
-    statId:{
-        type:String,
-        required:true
-    },
-   accessData:[userDayAccessSchema]
-})
-const PVUV = mongoose.model('PVUV', PvUvSchema);
-const UV_STATID = mongoose.model('UV_STATID',UvStatIdSchema);
 
-module.exports = {
-    PVUV,UV_STATID
-}
+const PVUV = mongoose.model('PVUV', PvUvSchema);
+
+
+module.exports = PVUV
