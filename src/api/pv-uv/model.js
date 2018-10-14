@@ -1,19 +1,24 @@
 const mongoose = require('mongoose')
 const { Schema } = require('mongoose')
-
-const dayPvUvSchema = new Schema({
-    accessDate: {
-        type: String,
-        required:true
+const statIdSchema = new Schema({
+    statId:{
+        type:String,
+        required:true,
     },
-    brower:{
+    browser:{
         type:String
     },
-    browerLanguage:{
+    browserLanguage:{
         type:String
     },
     platform:{
         type:String
+    },
+})
+const dayPvUvSchema = new Schema({
+    accessDate: {
+        type: String,
+        required:true
     },
     pv:{
         type: Number,
@@ -24,7 +29,7 @@ const dayPvUvSchema = new Schema({
         required: true
     },
     statIds:{
-        type:[String],
+        type:[statIdSchema],
         required:true
     }
 })
@@ -36,7 +41,7 @@ const PvUvSchema = new Schema({
         type:String,
         required: true
     },
-    accessData:[dayPvUv]
+    accessData:[dayPvUvSchema]
 })
 
 const PVUV = mongoose.model('PVUV', PvUvSchema);

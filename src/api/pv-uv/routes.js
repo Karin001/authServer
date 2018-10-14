@@ -8,7 +8,7 @@ router.post('/PvUv', async ctx => {
 
 router.get('/PvUv', async ctx => {
   const name = ctx.query.name
- await controller.signup(ctx,  {name} )
+ await controller.getPagePvUv(ctx,  {name} )
 
 
 })
