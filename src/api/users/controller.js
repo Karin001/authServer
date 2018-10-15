@@ -1,7 +1,7 @@
 
 const User = require('./model')
 const md5Change = require('../../utils/md5-change').md5Change
-const jwt = require('jsonwebtoken')
+const jwt = require('../../../node_modules/jsonwebtoken')
 const nodemailer = require('nodemailer')
 const enDecode = require('../../utils/simpleEndecode')
 const successResponse = (user, ctx) => {
