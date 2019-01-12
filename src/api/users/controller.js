@@ -7,7 +7,7 @@ const enDecode = require('../../utils/simpleEndecode')
 const successResponse = (user, ctx) => {
   let payload = {
     name: user.fullName,
-    role:'user',
+    role: user.email === 'yukarinrin@163.com'? 'user':'guest',
     permissionPoint:2
   }
   let token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.EXPRIRESIN })

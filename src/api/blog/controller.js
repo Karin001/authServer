@@ -61,4 +61,22 @@ exports.viewContent = async (ctx, { data = {} } = {}) => {
         errorResponse('服务器抽风',ctx)
     }
 }
+exports.editContent = async (ctx, { data = {} } = {}) => {
+    if(!data || !data.id) {
+        errorResponse('信息缺失',ctx)
+        return
+    }
+    try {
+        const blogContent = await Blog.findById(data.id)
+        if(!blogContent) {
+            errorResponse('没找到',ctx)
+            return
+        }
+        blogContent.content = data.content;
+        await blogContent.save();
+        successResponse(blogContent,ctx)
+    } catch (error) {
+        errorResponse(error,ctx)
+    }
+}
 

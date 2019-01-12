@@ -15,4 +15,9 @@ router.post('/content', async ctx => {
     await controller.viewContent(ctx, { data })
 
 })
+router.post('/edit', async ctx => {
+    const data = ctx.request.body
+    await controller.editContent(ctx, { data })
+
+})
 module.exports = router.routes()
