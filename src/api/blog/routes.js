@@ -20,4 +20,14 @@ router.post('/edit', async ctx => {
     await controller.editContent(ctx, { data })
 
 })
+router.post('/addComment', async ctx => {
+    const data = ctx.request.body
+    await controller.addComment(ctx, { data })
+
+})
+router.post('/toggleHeart', async ctx => {
+    const data = ctx.request.body
+    await controller.toggleHeart(ctx, { data })
+
+})
 module.exports = router.routes()

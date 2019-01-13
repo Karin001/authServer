@@ -1,6 +1,16 @@
 const mongoose = require('mongoose')
 const { Schema } = require('mongoose')
-
+const CommentSchema = new Schema({
+ message:String,
+ like:[String],
+ username:String,
+ userid:String,
+ created_on:Date,
+})
+const PlurCommentSchema = new Schema({
+  main:CommentSchema,
+  sub:[CommentSchema]
+ })
 const BlogSchema = new Schema({
   filename: {
     type: String,
@@ -17,6 +27,9 @@ const BlogSchema = new Schema({
   content: {
       type: String,
       required: true
+  },
+  comments:{
+    type:[PlurCommentSchema]
   },
   created_on: {
     type: Date,
