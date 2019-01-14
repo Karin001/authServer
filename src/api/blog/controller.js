@@ -1,7 +1,9 @@
 const Blog = require('./model')
 const toggle = (arr,username)=>{
+    console.log('arr',arr,username)
     if (arr.includes(username)) {
-     return arr.filter(name !== username);
+        const temp = arr.filter(name => name !== username)
+     return temp
       } else {
         return [...arr, username];
       }
@@ -9,6 +11,7 @@ const toggle = (arr,username)=>{
 }
 const errorResponse = (errorInfo, ctx) => {
     ctx.status = 403
+    //console.log('errorinfo',errorInfo)
     ctx.body = {
         success: false,
         errorInfo: errorInfo
@@ -155,8 +158,7 @@ exports.toggleHeart = async (ctx, { data = {} } = {}) => {
                 blog.comments[data.level.main].sub[data.level.sub].like = [data.username]
 
             } else{
-                let like =  blog.comments[data.level.main].sub[data.level.sub].like
-               like = toggle(like,data.username)
+                blog.comments[data.level.main].sub[data.level.sub].like = toggle(blog.comments[data.level.main].sub[data.level.sub].like,data.username)
             }
         }
         
@@ -164,7 +166,8 @@ exports.toggleHeart = async (ctx, { data = {} } = {}) => {
         await blog.save();
         successResponse(blog, ctx)
     } catch (error) {
-        errorResponse(error, ctx)
+        
+        errorResponse(JSON.stringify(error), ctx)
     }
 }
 
